@@ -4,6 +4,40 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type AnnouncementBarDocumentDataSlicesSlice = AnnouncementBarSlice;
+
+/**
+ * Content for Announcement Bar documents
+ */
+interface AnnouncementBarDocumentData {
+  /**
+   * Slice Zone field in *Announcement Bar*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: announcement_bar.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<AnnouncementBarDocumentDataSlicesSlice>;
+}
+
+/**
+ * Announcement Bar document from Prismic
+ *
+ * - **API ID**: `announcement_bar`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AnnouncementBarDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AnnouncementBarDocumentData>,
+    "announcement_bar",
+    Lang
+  >;
+
 type ArticleDocumentDataSlicesSlice =
   | ArticleImageBlockSlice
   | ArticleRichTextSlice;
@@ -62,142 +96,7 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
-type ArticleListingDocumentDataSlicesSlice = never;
-
-/**
- * Content for Article Listing documents
- */
-interface ArticleListingDocumentData {
-  /**
-   * Slice Zone field in *Article Listing*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article_listing.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<ArticleListingDocumentDataSlicesSlice>
-  /**
-   * Meta Description field in *Article Listing*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: article_listing.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Article Listing*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article_listing.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Article Listing*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: article_listing.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Article Listing document from Prismic
- *
- * - **API ID**: `article_listing`
- * - **Repeatable**: `false`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ArticleListingDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithoutUID<
-    Simplify<ArticleListingDocumentData>,
-    "article_listing",
-    Lang
-  >;
-
-type ArticlePageDocumentDataSlicesSlice = never;
-
-/**
- * Content for Article Page documents
- */
-interface ArticlePageDocumentData {
-  /**
-   * Slice Zone field in *Article Page*
-   *
-   * - **Field Type**: Slice Zone
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article_page.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
-   */
-  slices: prismic.SliceZone<ArticlePageDocumentDataSlicesSlice>
-  /**
-   * Meta Description field in *Article Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: article_page.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
-  meta_description: prismic.KeyTextField;
-
-  /**
-   * Meta Image field in *Article Page*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: article_page.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  meta_image: prismic.ImageField<never>;
-
-  /**
-   * Meta Title field in *Article Page*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: article_page.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  meta_title: prismic.KeyTextField;
-}
-
-/**
- * Article Page document from Prismic
- *
- * - **API ID**: `article_page`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type ArticlePageDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<ArticlePageDocumentData>,
-    "article_page",
-    Lang
-  >;
-
-export type AllDocumentTypes =
-  | ArticleDocument
-  | ArticleListingDocument
-  | ArticlePageDocument;
+export type AllDocumentTypes = AnnouncementBarDocument | ArticleDocument;
 
 /**
  * Primary content in *AnnouncementBar → Primary*
@@ -470,15 +369,12 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AnnouncementBarDocument,
+      AnnouncementBarDocumentData,
+      AnnouncementBarDocumentDataSlicesSlice,
       ArticleDocument,
       ArticleDocumentData,
       ArticleDocumentDataSlicesSlice,
-      ArticleListingDocument,
-      ArticleListingDocumentData,
-      ArticleListingDocumentDataSlicesSlice,
-      ArticlePageDocument,
-      ArticlePageDocumentData,
-      ArticlePageDocumentDataSlicesSlice,
       AllDocumentTypes,
       AnnouncementBarSlice,
       AnnouncementBarSliceVariation,
