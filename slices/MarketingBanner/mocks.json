@@ -1,0 +1,55 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"image": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
+					"width": 4272,
+					"height": 2848
+				},
+				"url": "https://images.unsplash.com/photo-1547082299-de196ea013d6",
+				"width": 4272,
+				"height": 2848,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://google.fr",
+					"target": "_blank"
+				}
+			},
+			"button": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Click here"
+			},
+			"start_at": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2023-08-26"
+			},
+			"end_at": {
+				"__TYPE__": "FieldContent",
+				"type": "Date",
+				"value": "2024-04-08"
+			}
+		},
+		"items": []
+	}
+]

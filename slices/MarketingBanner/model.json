@@ -1,0 +1,56 @@
+{
+  "id": "marketing_banner",
+  "type": "SharedSlice",
+  "name": "MarketingBanner",
+  "description": "MarketingBanner",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "button": {
+          "type": "Text",
+          "config": {
+            "label": "Button",
+            "placeholder": ""
+          }
+        },
+        "start_at": {
+          "type": "Date",
+          "config": {
+            "label": "Start at",
+            "placeholder": ""
+          }
+        },
+        "end_at": {
+          "type": "Date",
+          "config": {
+            "label": "End at",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
